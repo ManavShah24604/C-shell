@@ -1,0 +1,20 @@
+cd .. 
+cd --
+ls 
+echo helo 
+pinfo
+pinfo 0
+pinfo 21
+pinfo 2
+pinfo
+pinfo 21
+cd ..
+cd .. 
+ls ../Downlods/ls_2.c
+ls ../Downloads/OS2
+pinfo
+pinfo 32
+pinfo 
+ps
+
+pinfo 10916
