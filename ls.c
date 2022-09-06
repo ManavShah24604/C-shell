@@ -1,32 +1,23 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <errno.h>
-#include <stdlib.h>
-#include <stdlib.h>
 #include <signal.h>
 #include <string.h>
 #include <stdbool.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <time.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include <sys/utsname.h>
 #include <pwd.h>
-#include <unistd.h>
 #include <string.h>
-#include <dirent.h>
 #include <time.h>
 #include <grp.h>
-#include <stdbool.h>
-#include <unistd.h>
 #define GREEN "\x1b[32m"
 #define BLUE "\x1b[34m"
 #define RESET "\x1b[0m"
 #define RED "\x1b[31m"
+char root[2560];
 void ls()
 {
     int flaga = 0, flagl = 0, flagdot = 0;
@@ -37,9 +28,8 @@ void ls()
                                    "\t");
     while (database[count] != 0)
     {
-        // printf("here\n");
+       
         count++;
-        // char *second;
         database[count] = strtok(NULL, " "
                                        "\t");
     }
@@ -49,7 +39,6 @@ void ls()
     int some = 0;
     for (int i = 0; i < count; i++)
     {
-        // printf("%s\n",database[i]);
         if (strcmp(database[i], "-a") == 0)
         {
             flaga++;
@@ -65,10 +54,14 @@ void ls()
         }
         else
         {
+            // printf("%s", database[i]);
             data[some] = (char *)malloc(10000);
-            // data[0] = '\0';
-            // printf("%s\n",database[i]);
-            strcpy(data[some], database[i]);
+            if (strcmp(database[i], "~") == 0)
+            {
+                strcpy(data[some], root);
+            }
+            else
+                strcpy(data[some], database[i]);
             some++;
         }
     }
@@ -98,14 +91,23 @@ void ls()
                 strcat(tempcomplete, "/");
                 if (data[i] != 0)
                     strcat(tempcomplete, data[i]);
-                strcat(tempcomplete, "/");
 
-                if (stat(data[i], &newfile) == 0 && !S_ISDIR(newfile.st_mode))
+                if (stat(tempcomplete, &newfile) == 0)
                 {
-                    // strcat(tempcomplete, ls_struct->d_name);
-                    stat(data[i], &ss);
-                    stat(data[i], &somefile);
-                    if (data[i][0] == '.')
+                    stat(tempcomplete, &somefile);
+                    int len = strlen(data[i]), dotpresent = 0;
+                    for (int someit = len - 1; someit >= 0; someit--)
+                    {
+                        if (data[i][someit] == '/')
+                        {
+                            if (data[i][someit + 1] == '.')
+                            {
+                                dotpresent = 1;
+                                break;
+                            }
+                        }
+                    }
+                    if (dotpresent == 1)
                     {
                         if (flaga == 1)
                         {
@@ -120,7 +122,9 @@ void ls()
                         if (somefile.st_mode & S_IXUSR)
                             printf(GREEN "%s " RESET, data[i]);
                         else
+                        {
                             printf("%s ", data[i]);
+                        }
                     }
                 }
                 else
@@ -181,17 +185,23 @@ void ls()
             }
             if (ls_dir == NULL)
             {
-                struct stat somefile;
-                // printf("%s\n", data[i]);
-                stat(data[i], &somefile);
-                // printf("%    s\n", data[i]);
-                struct stat newfile;
-                if (stat(data[i], &newfile) == 0 && !S_ISDIR(newfile.st_mode))
+                struct stat somefile, newfile;
+                struct stat ss;
+                char tempcomplete[10100];
+                tempcomplete[0] = '\0';
+                getcwd(tempcomplete, sizeof(tempcomplete));
+                strcat(tempcomplete, "/");
+                if (data[i] != 0)
+                    strcat(tempcomplete, data[i]);
+
+                // printf("%s\n", tempcomplete);
+                // stat(tempcomplete, &somefile);
+                if (stat(tempcomplete, &newfile) == 0)
                 {
                     // if (data[i][0] != '.')
                     //     printf(" %s ", data[i]);
                     temp[0] = '\0';
-                    strcpy(temp, data[i]);
+                    strcpy(temp, tempcomplete);
                     goto nextsection;
                 }
                 else

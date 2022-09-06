@@ -7,7 +7,9 @@
 #include <stdbool.h>
 #include "header.h"
 #define NEG -10000000
-extern char root[2560];
+
+extern char root[2560], namesofprocess[2000][2000];
+extern int valueofpid[1000], value[1000];
 char history2[100][500];
 int main()
 {
@@ -20,14 +22,11 @@ int main()
     strcat(temphistory, "/");
     strcat(temphistory, "history.txt");
 
-    // if(fhistory==NULL) printf("error\n");
     printf("%s\n", temphistory);
     while (1)
     {
-
-        // printf("here\n");
+        signal(SIGCHLD, funcforpid());
         display_prompt();
-        //  printf("here\n");
         char str[100010];
         char *input;
         size_t buff = 100000;
@@ -41,7 +40,7 @@ int main()
         strcpy(str, input);
         if (strlen(str) == 0)
         {
-            printf("here\n");
+            // printf("here\n");
             continue;
         }
         else
@@ -95,9 +94,13 @@ int main()
             while (noofcommands--)
             {
                 char *first;
+                if (storestrings[i] != 0)
+                {
+                    // printf("%d\n",strlen(storestrings[i]));
+                }
                 first = strtok(storestrings[i], " "
                                                 "\t");
-                i++;
+
                 if (first == 0)
                 {
                     break;
@@ -116,6 +119,10 @@ int main()
                 else if (strcmp(first, "echo") == 0)
                 {
                     echo();
+                }
+                else if (strcmp(first, "discover") == 0)
+                {
+                    discover();
                 }
                 else if (strcmp(first, "ls") == 0)
                 {
@@ -138,7 +145,7 @@ int main()
                             num += (second[iterator] - '0') * pow;
                             pow *= 10;
                         }
-                        printf("%d\n",num);
+                        printf("%d\n", num);
                         pinfo(num);
                     }
                 }
@@ -162,9 +169,12 @@ int main()
                 }
                 else
                 {
-                    printf("No such command exists\n");
-                }
+                    // printf("%s\n", input);
 
+                    bg_fg(input);
+                    // printf("No such command exists\n");
+                }
+                i++;
                 substr = strtok(str, ";");
             }
         }
