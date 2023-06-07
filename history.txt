@@ -1,20 +1,20 @@
-cd .. 
-cd --
+sort < 1.txt >> some.txt
+cat some.txt
+cat ome
+cat somettx
+s
+cat s
+cat somet 
 ls 
-echo helo 
-pinfo
-pinfo 0
-pinfo 21
-pinfo 2
-pinfo
-pinfo 21
-cd ..
-cd .. 
-ls ../Downlods/ls_2.c
-ls ../Downloads/OS2
-pinfo
-pinfo 32
-pinfo 
-ps
+ls somet x
+cat somet x
+cat 
+cat somettx
+ls a
+ls a.
+ls add
+ls ad
+cat add
+cat addtohistory.c 
 
-pinfo 10916
+cat somettx

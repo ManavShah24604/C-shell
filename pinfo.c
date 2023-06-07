@@ -51,7 +51,7 @@ void pinfo(int num)
         printf("process Status : {%s}\n", file_contents[2]);
     else
     {
-        if (strcpy(file_contents[4], file_contents[7]) == 0)
+        if (strcmp(file_contents[4], file_contents[7]) == 0)
             printf("process Status : {%s+}\n", file_contents[2]);
         else
             printf("process Status : {%s}\n", file_contents[2]);
