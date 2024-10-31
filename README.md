@@ -1,136 +1,40 @@
-<!-- file is written in markdown format -->
+# C-Shell
 
-```
-Basic Linux C-Shell
-```
+This is an introduction to the project. For a technical report, please refer to [this](https://github.com/ManavShah24604/C-shell/blob/main/README.md).
 
-```
-Extract the .zip file and then:
-$ make
-$ ./a.out
-```
+## Table of Contents
+1. [Overview](#overview)
+2. [Key Accomplishments](#key-accomplishments)
+    - [Command Execution and Process Management](#command-execution-and-process-management)
+    - [Background Process Management](#background-process-management)
+    - [Advanced Features](#advanced-features)
+    - [Signal Handling](#signal-handling)
+    - [Autocompletion](#autocompletion)
+    - [Built-In Commands](#built-in-commands)
 
-Main Files :
-```
-main.c containing driver code
-```
-```
+## Overview
 
-header.h includes all the function defintions 
-```
+This is a C-Shell project - a comprehensive implementation of a Unix-like command-line shell in the C programming language. This project was developed to showcase a deep understanding of operating system principles, process management, and system programming. The shell provides an intuitive and efficient interface for executing commands, managing background processes, and handling various Unix features like I/O redirection, piping, and signals.
 
-# ****Part 1 : command_prompt , cd , echo , pwd****
+## Key Accomplishments
 
-```
-Different Files :
-```
-```
-cd.c
-```
-```
-echo.c
-```
-```
-pwd.c
-```
+### Command Execution and Process Management
+The C-Shell successfully implements a robust command execution system that supports both foreground and background processes. Users can chain commands using `;` operator, similar to Unix terminals. The shell ensures efficient process handling, with foreground processes being monitored for execution time and background processes being tracked and managed effectively.
 
-# ****Part 2: ls****
+### Built-In Commands
+The shell supports a variety of built-in commands such as `echo`, `cd`, `pwd`, `ls`, `pinfo`, `history`, `discover`, `jobs`, `sig`, `fg`, and `bg`. These commands cover essential functionalities, from navigating the filesystem to managing processes and retrieving system information.
 
-```
-Files :
-```
-```
-ls.c
-```
-```
-Handles ls command printing all files/sub-directories
+### Autocompletion
+An intuitive autocompletion feature is included, enhancing the user experience by providing suggestions based on the current input. This feature mimics the behavior of modern Unix shells, offering a list of possible file or directory names when the `tab` key is pressed, or completing the name if there's only one match.
 
-Colors implemented:
-Directory : (blue)
-Executables : (green)
-Simple File : (white)
-```
+### Background Process Management
+C-Shell includes comprehensive management for background processes. When a command is executed in the background using the `&` operator, the shell tracks the process and allows users to monitor or control it through built-in commands like `jobs`, `fg`, `bg`. This feature enhances multitasking capabilities within the shell, providing users with a more flexible and powerful environment for handling multiple processes simultaneously.
 
-# ****Part  8: history****
+### Advanced Features
+The shell includes advanced features such as I/O redirection, allowing users to direct output to files or take input from files seamlessly. Piping between commands is also supported, enabling complex command sequences where the output of one command becomes the input for the next.
 
-```
-Files :
-history.c history.txt
-```
-```
-history.txt stores 20 commands and whenever history command is called it presents the 10 last commands which were executed
-```
-# ****Part 4, 6: Foreground / Background processes****
+### Signal Handling
+The C-Shell is equipped with comprehensive signal handling capabilities. It responds to common signals such as `^C` for terminating processes, `^Z` for pushing processes to the background, and `^D` for logging out of the shell. These features contribute to a smooth and user-friendly experience.
 
-```
-Files :
-bg_fg.c 
-```
-```
-Shell able to run multiple foreground and background processes, and not just one. Running pinfo on each of these works as well.
-
-```
-
-# ****Part 5: pinfo****
-
-```
-Files :
-pinfo.c
-```
-```
-You can enter the PID number of the process you want to know the information or else it would take the current process. 
-```
-
-# ****Part 7: discover****
-
-```
-Files :
-discover.c
-```
-```
-This commands works similar to the find command of the terminal. 
-Request : Don't test this command on Desktop or Downloads folder i.e on a very big folder because printing all the files gives SEG error 
-```
-
-# ****Part 8: IO Redirection****
-
-```
-Files :
-io.c
-```
-```
-This command does input-output re-direction. 
-Please enter proper spacing in all the commands of this section. 
-```
-
-# ****Part 9: Autocomplete****
-
-```
-Files :
-main2.c
-```
-```
-This command auto-completes the name in the current-directory. 
-I have implemented this in the same way given in the pdf. 
-```
-# ****Part 10: Signals ****
-
-```
-Files :
-multiple files 
-```
-```
-ctrl z and ctrl c wouldn't be printed if there is no current foreground process working except a.out. 
-```
-
-# ****Part 11: fg and bg****
-
-```
-Files :
-fg.c 
-```
-```
-This commands get implemented in the same way as given in the pdf. 
-```
 
 

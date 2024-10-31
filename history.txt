@@ -1,20 +1,19 @@
-sort < 1.txt >> some.txt
-cat some.txt
-cat ome
-cat somettx
-s
-cat s
-cat somet 
+history 
+ls -al 
+clear 
 ls 
-ls somet x
-cat somet x
-cat 
-cat somettx
-ls a
-ls a.
-ls add
-ls ad
-cat add
-cat addtohistory.c 
+sleep 2
+sleep 5& 
+pinfo
+pinfo 252598
+clear 
+ls 
+clear 
+sig
+pingo
+pinfo
+slepp 5 &
+pinfo
+exit
+quit
 
-cat somettx
